@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf8"?>
+<rss version="0.91">
+    <channel>
+        <title>Star Wars Combine - Scan of coords 11, 6 at The Maw (395, 71)</title>
+        <description>scanner output</description>
+        <link>https://www.swcombine.com</link>
+        <lastBuildDate>Thu, 11 Jan 2024 15:36:39</lastBuildDate>
+        <generator>FeedCreator 1.7.2</generator>
+        <language>en</language>
+        <copyright>Copyright: Star Wars Combine</copyright>
+        <webMaster>webmaster@swcombine.com</webMaster>
+    <date>Year 25 Day 46</date>
+    <characterName>Eric Zahm</characterName>
+    <characterUID>1:29582</characterUID>
+    <cgt>
+                <years>25</years>
+                <days>46</days>
+                <hours>8</hours>
+                <minutes>36</minutes>
+                <seconds>38</seconds>
+    </cgt>
+    <sensorPower>12</sensorPower>
+    <location>
+                <galX>395</galX>
+                <galY>71</galY>
+                <sysX>11</sysX>
+                <sysY>6</sysY>
+                <layer>Space</layer>
+    </location>
+        <item>
+                <inParty>No</inParty>
+                <name>AAKrey Pod Alpha</name>
+                <typeName>Escape Pod</typeName>
+                <entityID>215348</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:215348</entityUID>
+                <hull>5</hull>
+                <hullMax>5</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>1</ionic>
+                <ionicMax>1</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Krey Merr</ownerName>
+                <ownerUID>1:1202229</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/62/main.jpg</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>AAKrey Pod Beta</name>
+                <typeName>Escape Pod</typeName>
+                <entityID>215349</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:215349</entityUID>
+                <hull>5</hull>
+                <hullMax>5</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>1</ionic>
+                <ionicMax>1</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Vir Calder</ownerName>
+                <ownerUID>1:29288</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/62/main.jpg</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Trash Panda</name>
+                <typeName>YV-666 Light Freighter</typeName>
+                <entityID>220064</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:220064</entityUID>
+                <hull>1350</hull>
+                <hullMax>1350</hullMax>
+                <shield>1000</shield>
+                <shieldMax>1000</shieldMax>
+                <ionic>650</ionic>
+                <ionicMax>650</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Shawn Veldn</ownerName>
+                <ownerUID>1:1407275</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>http://i1217.photobucket.com/albums/dd397/izecmc/790081a6.jpg</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Askajian Arrow</name>
+                <typeName>C-3 Passenger Liner</typeName>
+                <entityID>222988</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:222988</entityUID>
+                <hull>800</hull>
+                <hullMax>800</hullMax>
+                <shield>200</shield>
+                <shieldMax>200</shieldMax>
+                <ionic>300</ionic>
+                <ionicMax>300</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Krey Merr</ownerName>
+                <ownerUID>1:1202229</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/48/main.png</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>TSK A-Wing 2</name>
+                <typeName>RZ-1 A-wing Interceptor</typeName>
+                <entityID>237346</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:237346</entityUID>
+                <hull>50</hull>
+                <hullMax>50</hullMax>
+                <shield>50</shield>
+                <shieldMax>50</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Tresario Star Kingdom</ownerName>
+                <ownerUID>20:481</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/19/main.jpg</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>[RFS] Substantially undefined bodypart of Jude</name>
+                <typeName>RZ-1 A-wing Interceptor</typeName>
+                <entityID>263914</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:263914</entityUID>
+                <hull>50</hull>
+                <hullMax>50</hullMax>
+                <shield>50</shield>
+                <shieldMax>50</shieldMax>
+                <ionic>15</ionic>
+                <ionicMax>15</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Ridley Forge</ownerName>
+                <ownerUID>1:1216357</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://custom.swcombine.com/static/2/19/34-36228-1581977039-small.png</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>[SC] Kosamui</name>
+                <typeName>Ardent-class Fast Frigate</typeName>
+                <entityID>451161</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:451161</entityUID>
+                <hull>3000</hull>
+                <hullMax>3000</hullMax>
+                <shield>1000</shield>
+                <shieldMax>1000</shieldMax>
+                <ionic>1000</ionic>
+                <ionicMax>1000</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Sienar Conglomerate</ownerName>
+                <ownerUID>20:804</ownerUID>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/228/main.jpg</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Ambition</name>
+                <typeName>ATR-6 Assault Transport</typeName>
+                <entityID>500616</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:500616</entityUID>
+                <hull>300</hull>
+                <hullMax>300</hullMax>
+                <shield>350</shield>
+                <shieldMax>350</shieldMax>
+                <ionic>160</ionic>
+                <ionicMax>160</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Vir Calder</ownerName>
+                <ownerUID>1:29288</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://custom.swcombine.com/static/2/110/34-34159-1604089890-small.png</image>
+        </item>
+        <item>
+                <inParty>Yes</inParty>
+                <partyLeaderUID>2:500616</partyLeaderUID>
+                <partyLeaderName>Ambition</partyLeaderName>
+                <name>Guangfu 3</name>
+                <typeName>Pursuer-class Enforcement Ship</typeName>
+                <entityID>2752679</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:2752679</entityUID>
+                <hull>300</hull>
+                <hullMax>300</hullMax>
+                <shield>150</shield>
+                <shieldMax>150</shieldMax>
+                <ionic>100</ionic>
+                <ionicMax>100</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Vir Calder</ownerName>
+                <ownerUID>1:29288</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/114/main.png</image>
+        </item>
+        <item>
+                <inParty>Yes</inParty>
+                <partyLeaderUID>2:500616</partyLeaderUID>
+                <partyLeaderName>Ambition</partyLeaderName>
+                <name>Nu-class Attack Shuttle</name>
+                <typeName>Nu-class Attack Shuttle</typeName>
+                <entityID>2029181</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:2029181</entityUID>
+                <hull>190</hull>
+                <hullMax>190</hullMax>
+                <shield>130</shield>
+                <shieldMax>130</shieldMax>
+                <ionic>80</ionic>
+                <ionicMax>80</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Zal Ragath</ownerName>
+                <ownerUID>1:1475040</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://custom.swcombine.com/static/2/167/34-246035-1622816874-small.png</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Wraith-1</name>
+                <typeName>Crusader-class Corvette</typeName>
+                <entityID>565988</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:565988</entityUID>
+                <hull>1000</hull>
+                <hullMax>1000</hullMax>
+                <shield>400</shield>
+                <shieldMax>400</shieldMax>
+                <ionic>400</ionic>
+                <ionicMax>400</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Eric Zahm</ownerName>
+                <ownerUID>1:29582</ownerUID>
+                <iffStatus>Friend</iffStatus>
+                <image>https://img.swcombine.com//ships/227/main.png</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Pocket Monster</name>
+                <typeName>Defender-class Light Corvette</typeName>
+                <entityID>2650787</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:2650787</entityUID>
+                <hull>400</hull>
+                <hullMax>400</hullMax>
+                <shield>900</shield>
+                <shieldMax>900</shieldMax>
+                <ionic>800</ionic>
+                <ionicMax>800</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Sons of Turul</ownerName>
+                <ownerUID>20:1361</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/249/main.jpg</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Carrelbee’s Hope</name>
+                <typeName>YT-1760</typeName>
+                <entityID>2743927</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:2743927</entityUID>
+                <hull>160</hull>
+                <hullMax>160</hullMax>
+                <shield>0</shield>
+                <shieldMax>0</shieldMax>
+                <ionic>50</ionic>
+                <ionicMax>50</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Paul Luz</ownerName>
+                <ownerUID>1:1452182</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/139/main.jpg</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>[WC] Resilience</name>
+                <typeName>C-3 Passenger Liner</typeName>
+                <entityID>3275417</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:3275417</entityUID>
+                <hull>800</hull>
+                <hullMax>800</hullMax>
+                <shield>200</shield>
+                <shieldMax>200</shieldMax>
+                <ionic>300</ionic>
+                <ionicMax>300</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>Yes</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>William Colonel</ownerName>
+                <ownerUID>1:1330236</ownerUID>
+                <iffStatus>Friend</iffStatus>
+                <image>https://custom.swcombine.com/static/2/48/34-13715-1668357581-small.png</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Fury-class Imperial Interceptor</name>
+                <typeName>Fury-class Imperial Interceptor</typeName>
+                <entityID>4154445</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:4154445</entityUID>
+                <hull>600</hull>
+                <hullMax>600</hullMax>
+                <shield>698</shield>
+                <shieldMax>698</shieldMax>
+                <ionic>660</ionic>
+                <ionicMax>660</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rose Sartre</ownerName>
+                <ownerUID>1:1479086</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/278/main.png</image>
+        </item>
+        <item>
+                <inParty>Yes</inParty>
+                <partyLeaderUID>2:4154445</partyLeaderUID>
+                <partyLeaderName>Fury-class Imperial Interceptor</partyLeaderName>
+                <name>(For Sale) Fury-class Imperial Interceptor</name>
+                <typeName>Fury-class Imperial Interceptor</typeName>
+                <entityID>4154446</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:4154446</entityUID>
+                <hull>600</hull>
+                <hullMax>600</hullMax>
+                <shield>698</shield>
+                <shieldMax>698</shieldMax>
+                <ionic>660</ionic>
+                <ionicMax>660</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Rose Sartre</ownerName>
+                <ownerUID>1:1479086</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//ships/278/main.png</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Eyrus</name>
+                <typeName>Fury-class Imperial Interceptor</typeName>
+                <entityID>4259482</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:4259482</entityUID>
+                <hull>600</hull>
+                <hullMax>600</hullMax>
+                <shield>698</shield>
+                <shieldMax>698</shieldMax>
+                <ionic>660</ionic>
+                <ionicMax>660</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Nikolaj Eyre</ownerName>
+                <ownerUID>1:1464047</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://custom.swcombine.com/static/2/278/34-206900-1694561702-small.png</image>
+        </item>
+        <item>
+                <inParty>Yes</inParty>
+                <partyLeaderUID>2:4259482</partyLeaderUID>
+                <partyLeaderName>Eyrus</partyLeaderName>
+                <name>Eyris</name>
+                <typeName>Fury-class Imperial Interceptor</typeName>
+                <entityID>4259483</entityID>
+                <entityType>2</entityType>
+                <entityTypeName>Ships</entityTypeName>
+                <entityUID>2:4259483</entityUID>
+                <hull>600</hull>
+                <hullMax>600</hullMax>
+                <shield>698</shield>
+                <shieldMax>698</shieldMax>
+                <ionic>660</ionic>
+                <ionicMax>660</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Nikolaj Eyre</ownerName>
+                <ownerUID>1:1464047</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://custom.swcombine.com/static/2/278/34-206900-1698197786-small.png</image>
+        </item>
+        <item>
+                <inParty>No</inParty>
+                <name>Abandoned Research Installation</name>
+                <typeName>Maw Research Installation</typeName>
+                <entityID>7954</entityID>
+                <entityType>5</entityType>
+                <entityTypeName>Stations</entityTypeName>
+                <entityUID>5:7954</entityUID>
+                <hull>100000</hull>
+                <hullMax>100000</hullMax>
+                <shield>50000</shield>
+                <shieldMax>50000</shieldMax>
+                <ionic>75000</ionic>
+                <ionicMax>75000</ionicMax>
+                <underConstruction>No</underConstruction>
+                <sharingSensors>No</sharingSensors>
+                <travelDirection>Stationary</travelDirection>
+                <ownerName>Quests</ownerName>
+                <ownerUID>20:1135</ownerUID>
+                <iffStatus>Neutral</iffStatus>
+                <image>https://img.swcombine.com//stations/32/main.jpg</image>
+        </item>
+    </channel>
+</rss>

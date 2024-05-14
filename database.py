@@ -1,12 +1,9 @@
-from sqlalchemy import desc, create_engine, text, inspect, update, select, insert
-from sqlalchemy.sql import exists
+from sqlalchemy import create_engine, text, inspect
 from sqlalchemy.orm import Session
 import pandas as pd
 import os, xmltodict
 from dotenv import (load_dotenv)
-from models.entity import Entity
 from models.base import Model
-#from app import session
 
 load_dotenv()
 TURSO_DATABASE_URL= os.getenv("TURSO_DATABASE_URL")

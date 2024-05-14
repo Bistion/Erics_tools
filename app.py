@@ -1,7 +1,4 @@
-from flask import Flask, render_template, request
-from dotenv import load_dotenv
-from sqlalchemy import create_engine, event, Engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from flask import Flask
 import os
 
 from views import views

@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request, jsonify, redirect, url_for
-import json, os
+from flask import Blueprint, render_template, request, redirect
+import os
 from werkzeug.utils import secure_filename
 import pandas as pd
-from database import *
+from database import enter_scan, lookup_entity
 
 views = Blueprint(__name__, "views")
 

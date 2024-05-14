@@ -14,6 +14,7 @@ app.register_blueprint(views, url_prefix="/")
 def set_sqlite_pragma(dbapi_connection, connection_record):
   cursor = dbapi_connection.cursor()
   cursor.execute("PRAGMA foreign_keys=ON")
+  cursor.execute('PRAGMA busy_timeout = 20000')
   cursor.close()
 
 if __name__ == '__main__':

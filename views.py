@@ -22,7 +22,7 @@ def upload():
     for file in files:
       fn = secure_filename(file.filename)
       file.save(os.path.join('./uploads', fn))
-    logOutput = enter_scan(engine)
+    logOutput = enter_scan()
     with open ("templates/logOutput.html", 'w') as lo:
       lo.write(logOutput)
     return render_template('upload_log.html')
@@ -34,7 +34,7 @@ def entity_lookup():
   if request.method == 'POST':
     entityID = request.form.get('entityID')
     entityName = request.form.get('entityName')
-    results = lookup_entity(entityID,entityName,engine)
+    results = lookup_entity(entityID,entityName)
     value = pd.DataFrame(results)
     return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values)
   else:  

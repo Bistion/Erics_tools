@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, jsonify, redirect, url_fo
 import json, os
 from werkzeug.utils import secure_filename
 import pandas as pd
-# from database import *
 from database import *
 
 views = Blueprint(__name__, "views")
@@ -24,17 +23,9 @@ def upload():
       fn = secure_filename(file.filename)
       file.save(os.path.join('./uploads', fn))
     logOutput = enter_scan(engine)
-    return logOutput
-  else:
-    return redirect("/new-scan")
-
-@views.route("/lookup-result", methods=['GET','POST'])
-def lookup_results():
-  if request.method == 'POST':
-    entityID = request.args['entityID']
-    entityName = request.args['entityName']
-    results = lookup_entity(entityID,entityName,engine)
-    return results
+    with open ("templates/logOutput.html", 'w') as lo:
+      lo.write(logOutput)
+    return render_template('upload_log.html')
   else:
     return redirect("/new-scan")
 
@@ -48,11 +39,3 @@ def entity_lookup():
     return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values)
   else:  
     return render_template("entity_lookup.html")
-
-@views.route("/entity-results")
-def entity_results():
-  return render_template("entity_results.html")
-
-@views.route("/testing")
-def test_page():
-  return render_template("test_page.html")

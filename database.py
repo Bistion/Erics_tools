@@ -136,7 +136,7 @@ def lookup_entity(entityID,entityName):
   try:    
     resultsDF = resultsDF.sort_values(by=['entityID', 'name', 'last_seen'])
   except:
-    pass
+    resultsDF = "Entity Not Found"
   return resultsDF
 
 

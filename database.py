@@ -16,7 +16,7 @@ def enter_scan():
   Model.metadata.create_all(engine)
   dir_path = "./var"
   logOutput = ""
-  for root, dirs, files in os.walk(f"{dir_path}/uploads"):
+  for root, dirs, files in os.walk(f"/var/data/uploads"):
     for file in files:
       with open(f"/var/data/uploads/{file}", 'r', encoding='ISO-8859-1') as f:
         system_dict = xmltodict.parse(f.read())
@@ -56,7 +56,7 @@ def enter_scan():
                 logOutput += f"Scan date of {scan_date} is newer than last processed scan date of {compareScan}.  Continuing file processing.<br/>"
               else:
                 logOutput += f"File Scan date of {scan_date} is older than the newest scan data from {compareScan}.---->Skipping.<br/>"
-                os.remove(f"{dir_path}/uploads/{file}")
+                os.remove(f"/var/data/uploads/{file}")
                 continue
             except:
               pass

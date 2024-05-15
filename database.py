@@ -136,7 +136,7 @@ def lookup_entity(entityID,entityName):
   try:    
     resultsDF = resultsDF.sort_values(by=['entityID', 'name', 'last_seen'])
   except:
-    resultsDF = f"Entity Not Found in search of {tables}"
+    resultsDF = pd.DataFrame({'entity': [f"Entity Not Found in search of"]})
   return resultsDF
 
 

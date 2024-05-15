@@ -14,11 +14,11 @@ engine = create_engine(f"sqlite:///var/data/System_Scans.db", echo=False)
 
 def enter_scan():
   Model.metadata.create_all(engine)
-  dir_path = os.path.abspath(os.path.dirname(__file__))
+  dir_path = "./var"
   logOutput = ""
   for root, dirs, files in os.walk(f"{dir_path}/uploads"):
     for file in files:
-      with open(f"{dir_path}/uploads/{file}", 'r', encoding='ISO-8859-1') as f:
+      with open(f"/var/data/uploads/{file}", 'r', encoding='ISO-8859-1') as f:
         system_dict = xmltodict.parse(f.read())
         system = system_dict['rss']['channel']['title'].split('Scan of ')
         system_name = system[1]
@@ -29,7 +29,7 @@ def enter_scan():
         # Continue to next file if coords in the system_name
         if "coords" in system_name:
           logOutput += f"<h3>### File Processing Error!!!! ###</h3><br/>Send the following file to Eric for troubleshooting.<br/>- {file}<br/>"
-          os.remove(f"{dir_path}/uploads/{file}")
+          os.remove(f"/var/data//uploads/{file}")
           continue 
         data = []
         scanExists = False
@@ -44,7 +44,7 @@ def enter_scan():
           scanExists = session.execute(text(f"SELECT file_name FROM 'Processed Files' WHERE file_name == '{file}'")).all()
         if scanExists:
           logOutput += f"File already processed----> Skipping.<br/>"
-          os.remove(f"{dir_path}/uploads/{file}")
+          os.remove(f"/var/data//uploads/{file}")
           continue
         else:
           with engine.connect() as conn:
@@ -60,7 +60,7 @@ def enter_scan():
                 continue
             except:
               pass
-          os.remove(f"{dir_path}/uploads/{file}")
+          os.remove(f"/var/data//uploads/{file}")
         for item in system_dict['rss']['channel']['item']:
           # Check for Null/blank names
           if item['name'] is None:

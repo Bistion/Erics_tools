@@ -133,7 +133,10 @@ def lookup_entity(entityID,entityName):
             resultsDF = pd.concat([results,resultsDF])
       except:
         pass
-  resultsDF = resultsDF.sort_values(by=['entityID', 'name', 'last_seen'])
+  try:    
+    resultsDF = resultsDF.sort_values(by=['entityID', 'name', 'last_seen'])
+  except:
+    pass
   return resultsDF
 
 

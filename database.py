@@ -5,12 +5,12 @@ import os, xmltodict
 from dotenv import load_dotenv
 from models.base import Model
 
-load_dotenv()
-TURSO_DATABASE_URL= os.getenv("TURSO_DATABASE_URL")
-TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
-dbUrl = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
-engine = create_engine(dbUrl, connect_args={'check_same_thread': False}, echo=False)
-# engine = create_engine(f"sqlite:///New_System_Scans.db", echo=False)
+# load_dotenv()
+# TURSO_DATABASE_URL= os.getenv("TURSO_DATABASE_URL")
+# TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
+# dbUrl = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
+# engine = create_engine(dbUrl, connect_args={'check_same_thread': False}, echo=False)
+engine = create_engine(f"sqlite:///System_Scans.db", echo=False)
 
 def enter_scan():
   Model.metadata.create_all(engine)

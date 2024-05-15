@@ -14,7 +14,7 @@ engine = create_engine(f"sqlite:///var/data/System_Scans.db", echo=False)
 
 def enter_scan():
   Model.metadata.create_all(engine)
-  dir_path = os.path.dirname(os.path.realpath(__file__))
+  dir_path = os.path.abspath(os.path.dirname(__file__))
   logOutput = ""
   for root, dirs, files in os.walk(f"{dir_path}/uploads"):
     for file in files:

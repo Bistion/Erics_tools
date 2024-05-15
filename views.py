@@ -23,7 +23,7 @@ def upload():
       fn = secure_filename(file.filename)
       file.save(os.path.join('/var/data/uploads', fn))
     logOutput = enter_scan()
-    with open ("templates/logOutput.html", 'w') as lo:
+    with open ("./templates/logOutput.html", 'w') as lo:
       lo.write(logOutput)
     return render_template('upload_log.html')
   else:

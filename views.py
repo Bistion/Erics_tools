@@ -21,7 +21,7 @@ def upload():
     files = request.files.getlist('files')
     for file in files:
       fn = secure_filename(file.filename)
-      file.save(os.path.join('./uploads', fn))
+      file.save(os.path.join('/var/data/uploads', fn))
     logOutput = enter_scan()
     with open ("templates/logOutput.html", 'w') as lo:
       lo.write(logOutput)

@@ -10,6 +10,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.register_blueprint(views, url_prefix="/")
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 engine = create_engine(f"sqlite:////var/data/System_Scans.db", echo=False)
 

@@ -18,6 +18,7 @@ def new_scan():
 def upload():
   dir_path = os.path.dirname(os.path.realpath(__file__))
   if request.method == 'POST':
+    os.remove("./template/logOutput.html")
     files = request.files.getlist('files')
     for file in files:
       fn = secure_filename(file.filename)

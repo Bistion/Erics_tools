@@ -1,6 +1,6 @@
 from flask import Flask
 from sqlalchemy.engine import Engine
-from sqlalchemy import event
+from sqlalchemy import event, create_engine
 import os
 
 from views import views
@@ -9,6 +9,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.register_blueprint(views, url_prefix="/")
+
+engine = create_engine(f"sqlite:////var/data/System_Scans.db", echo=False)
 
 @event.listens_for(Engine, "connect")
 def set_sqlite_pragma(dbapi_connection, connection_record):

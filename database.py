@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 import pandas as pd
 import os, xmltodict
 from dotenv import load_dotenv
-from models.base import Model
+from models.base import Base
 
 # load_dotenv()
 # TURSO_DATABASE_URL= os.getenv("TURSO_DATABASE_URL")
@@ -13,7 +13,7 @@ from models.base import Model
 engine = create_engine(f"sqlite:////var/data/System_Scans.db", echo=False)
 
 def enter_scan():
-  Model.metadata.create_all(engine)
+  Base.metadata.create_all(engine)
   dir_path = "./var"
   logOutput = ""
   for root, dirs, files in os.walk(f"/var/data/uploads"):

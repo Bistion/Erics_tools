@@ -2,17 +2,17 @@ from sqlalchemy import create_engine, text, inspect
 from sqlalchemy.orm import Session
 import pandas as pd
 import os, xmltodict
-from dotenv import (load_dotenv)
+from dotenv import load_dotenv
 from models.base import Model
 
 load_dotenv()
 TURSO_DATABASE_URL= os.getenv("TURSO_DATABASE_URL")
 TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
 dbUrl = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
-engine = create_engine(dbUrl, echo=False)
+engine = create_engine(dbUrl, connect_args={'check_same_thread': False}, echo=False)
 # engine = create_engine(f"sqlite:///New_System_Scans.db", echo=False)
 
-def enter_scan(engine):
+def enter_scan():
   Model.metadata.create_all(engine)
   dir_path = os.path.dirname(os.path.realpath(__file__))
   logOutput = ""
@@ -116,7 +116,7 @@ def enter_scan(engine):
   engine.dispose()
   return logOutput
 
-def lookup_entity(entityID,entityName,engine):
+def lookup_entity(entityID,entityName):
   #engine = create_engine(f"sqlite:///New_System_Scans.db", echo=False)
   with engine.connect() as conn:
     resultsDF = pd.DataFrame()

@@ -137,11 +137,11 @@ def lookup_entity(entityID,entityName):
     resultsDF = pd.DataFrame({'entity': [f"Entity Not Found in search of {tables}"]})
   return resultsDF
 
-def system_report(system):
+def system_report(systemName):
   with engine.connect() as conn:
     resultsDF = pd.DataFrame()
     tables = inspect(engine).get_table_names()
-    newestScan = pd.read_sql(f"SELECT system, scan_date FROM 'Processed Files' WHERE system LIKE '{system}'", conn)
+    newestScan = pd.read_sql(f"SELECT system, scan_date FROM 'Processed Files' WHERE system LIKE '%{systemName}%'", conn)
     newestScan = newestScan.sort_values(by=['scan_date'], ascending=False, ignore_index=True).head(1)
     try:
       results = pd.read_sql(f"SELECT entityID, name, typeName, ownerName, last_seen FROM '{newestScan.system}'", conn)
@@ -152,7 +152,7 @@ def system_report(system):
   try:    
     resultsDF = resultsDF.sort_values(by=['entityID', 'name', 'last_seen'])
   except:
-    resultsDF = pd.DataFrame({f"System Data for {system}": [f"{system} Not Found in search of {tables}"]})
+    resultsDF = pd.DataFrame({f"System Data for {systemName}": [f"{systemName} Not Found in search of {tables}"]})
   return resultsDF
 
 

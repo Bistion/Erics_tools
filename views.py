@@ -45,7 +45,7 @@ def entity_lookup():
     return render_template("entity_lookup.html")
   
 @views.route("/system-report", methods=['GET','POST'])
-def system_report():
+def system_report_view():
   if request.method == 'POST':
     system = request.form.get('system')
     results = system_report(system)

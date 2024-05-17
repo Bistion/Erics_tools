@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect
 import os
 from werkzeug.utils import secure_filename
 import pandas as pd
-from database import enter_scan, lookup_entity
+from database import *
 
 views = Blueprint(__name__, "views")
 
@@ -43,3 +43,13 @@ def entity_lookup():
     return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values)
   else:  
     return render_template("entity_lookup.html")
+  
+@views.route("/system-report", methods=['GET','POST'])
+def system_report():
+  if request.method == 'POST':
+    system = request.form.get('system')
+    results = system_report(system)
+    value = pd.DataFrame(results)
+    return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values)
+  else:  
+    return render_template("system_report.html")

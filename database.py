@@ -14,7 +14,6 @@ engine = create_engine(f"sqlite:////var/data/System_Scans.db", echo=False)
 
 def enter_scan():
   Base.metadata.create_all(engine)
-  dir_path = "./var"
   logOutput = ""
   for root, dirs, files in os.walk(f"/var/data/uploads"):
     for file in files:
@@ -117,18 +116,17 @@ def enter_scan():
   return logOutput
 
 def lookup_entity(entityID,entityName):
-  #engine = create_engine(f"sqlite:///New_System_Scans.db", echo=False)
   with engine.connect() as conn:
     resultsDF = pd.DataFrame()
     tables = inspect(engine).get_table_names()
     for table in tables:
       try:
         if entityID != "":
-          results = pd.read_sql(f"SELECT entityID, name, typeName, last_seen, system FROM '{table}' WHERE entityID == '{entityID}'", conn)
+          results = pd.read_sql(f"SELECT entityID, name, typeName, ownerName, last_seen, system FROM '{table}' WHERE entityID == '{entityID}'", conn)
           if not results.empty:
             resultsDF = pd.concat([results,resultsDF])
         else: 
-          results = pd.read_sql(f"SELECT entityID, name, typeName, last_seen, system FROM '{table}' WHERE name LIKE '%{entityName}%'", conn)
+          results = pd.read_sql(f"SELECT entityID, name, typeName, ownerName, last_seen, system FROM '{table}' WHERE name LIKE '%{entityName}%'", conn)
           if not results.empty:
             resultsDF = pd.concat([results,resultsDF])
       except:
@@ -139,6 +137,23 @@ def lookup_entity(entityID,entityName):
     resultsDF = pd.DataFrame({'entity': [f"Entity Not Found in search of {tables}"]})
   return resultsDF
 
+def system_report(system):
+  with engine.connect() as conn:
+    resultsDF = pd.DataFrame()
+    tables = inspect(engine).get_table_names()
+    newestScan = pd.read_sql(f"SELECT system, scan_date FROM 'Processed Files' WHERE system LIKE '{system}'", conn)
+    newestScan = newestScan.sort_values(by=['scan_date'], ascending=False, ignore_index=True).head(1)
+    try:
+      results = pd.read_sql(f"SELECT entityID, name, typeName, ownerName, last_seen FROM '{newestScan.system}'", conn)
+      if not results.empty:
+        resultsDF = pd.concat([results,resultsDF])
+    except:
+      pass
+  try:    
+    resultsDF = resultsDF.sort_values(by=['entityID', 'name', 'last_seen'])
+  except:
+    resultsDF = pd.DataFrame({f"System Data for {system}": [f"{system} Not Found in search of {tables}"]})
+  return resultsDF
 
 
 

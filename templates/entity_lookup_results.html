@@ -16,9 +16,16 @@
   }
 </style>
 <div style="padding-top:20px">
-  <!-- <ul>Showing data for {{value}}</ul> -->
-  {% for table in tables %}
-  {{ table|safe }}
-  {% endfor %}
+  <div style="padding-top:10px;border-style: groove;border-color:white">
+    <center>
+      <h2 style="color:red">Showing data for entered search value:</h2>
+      <h1 style="color:red">"{{value}}"</h1>
+    </center>
+  </div>
+  <div style="padding-top:10px">
+    {% for table in tables %}
+    {{ table|safe }}
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}

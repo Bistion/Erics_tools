@@ -15,7 +15,10 @@
       word-wrap: break-word;
   }
 </style>
+<div style="padding-top:20px">
+  <!-- <ul>Showing data for {{value}}</ul> -->
   {% for table in tables %}
   {{ table|safe }}
   {% endfor %}
+</div>
 {% endblock %}

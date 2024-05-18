@@ -12,6 +12,31 @@ from models.base import Base
 # engine = create_engine(dbUrl, connect_args={'check_same_thread': False}, echo=False)
 engine = create_engine(f"sqlite:////var/data/System_Scans.db", echo=False)
 
+def add_data(data, system_name, scan_date, item, system_dict):
+  scan_data = [system_name,
+            scan_date, #actual scan date - static entry that won't change
+            scan_date+"(initial entry)", #updated entry for last seen date
+            system_dict['rss']['channel']['location']['galX'],
+            system_dict['rss']['channel']['location']['galY'],
+            item['name'],
+            item['typeName'],
+            item['entityID'],
+            item.get('entityType', 'Unknow Entity Type'),
+            f"{item['hull']}/{item['hullMax']}",
+            f"{item['shield']}/{item['shieldMax']}",
+            f"{item['ionic']}/{item['ionicMax']}",
+            item['underConstruction'],
+            item['sharingSensors'],
+            item['x'],
+            item['y'],
+            item['travelDirection'],
+            item['ownerName'],
+            item['iffStatus'],
+            item['image'],
+            ]
+  data.append(scan_data)
+  return data
+
 def enter_scan():
   Base.metadata.create_all(engine)
   logOutput = ""
@@ -28,7 +53,7 @@ def enter_scan():
         # Continue to next file if coords in the system_name
         if "coords" in system_name:
           logOutput += f"<h3>### File Processing Error!!!! ###</h3><br/>Send the following file to Eric for troubleshooting.<br/>- {file}<br/>"
-          os.remove(f"/var/data//uploads/{file}")
+          os.remove(f"/var/data/uploads/{file}")
           continue 
         data = []
         scanExists = False
@@ -43,7 +68,7 @@ def enter_scan():
           scanExists = session.execute(text(f"SELECT file_name FROM 'Processed Files' WHERE file_name == '{file}'")).all()
         if scanExists:
           logOutput += f"File already processed----> Skipping.<br/>"
-          os.remove(f"/var/data//uploads/{file}")
+          os.remove(f"/var/data/uploads/{file}")
           continue
         else:
           with engine.connect() as conn:
@@ -59,7 +84,7 @@ def enter_scan():
                 continue
             except:
               pass
-          os.remove(f"/var/data//uploads/{file}")
+          os.remove(f"/var/data/uploads/{file}")
         for item in system_dict['rss']['channel']['item']:
           # Check for Null/blank names
           if item['name'] is None:
@@ -73,40 +98,20 @@ def enter_scan():
             first_search = session.execute(text(f"SELECT name, entityID FROM '{system_name}' WHERE entityID == '{item['entityID']}' AND name == '{entityName}'")).all()
             if first_search:
               session.execute(text(f"UPDATE '{system_name}' SET last_seen='{scan_date}' WHERE entityID == '{item['entityID']}' AND name == '{entityName}'"))
-              continue 
-            if not first_search:
+            else:
               second_search = session.execute(text(f"SELECT name FROM '{system_name}' WHERE entityID == '{item['entityID']}'")).all()
               if second_search:
                 logOutput += f"* Entity with an ID of {item['entityID']} already entered as {second_search}, but is now reporting a different name.<br/> --> Updating name to be {item['name']}<br/>"
                 session.execute(text(f"UPDATE '{system_name}' SET last_seen='{scan_date}', name='{item['name']}' WHERE entityID == '{item['entityID']}'"))
-                session.execute(text(f"INSERT INTO 'Entity Changes' (entityID, name, last_seen, typeName, system) VALUES ('{item['entityID']}', '{item['name']}', '{scan_date}', '{item['typeName']}', '{system[1]}')"))
+                session.execute(text(f"INSERT INTO 'Entity Changes' (entityID, name, ownerName, last_seen, typeName, system) VALUES ('{item['entityID']}', '{item['name']}', '{item['ownerName']}', '{scan_date}', '{item['typeName']}', '{system[1]}')"))
                 session.commit()
-                continue
+                
               else:
                 logOutput += f"- New entity found.  Adding {item['name']}(ID#: {item['entityID']}) to {system_name}<br/>"
-          scan_data = [system_name,
-                      scan_date, #actual scan date - static entry that won't change
-                      scan_date+"(initial entry)", #updated entry for last seen date
-                      system_dict['rss']['channel']['location']['galX'],
-                      system_dict['rss']['channel']['location']['galY'],
-                      item['name'],
-                      item['typeName'],
-                      item['entityID'],
-                      item.get('entityType', 'Unknow Entity Type'),
-                      f"{item['hull']}/{item['hullMax']}",
-                      f"{item['shield']}/{item['shieldMax']}",
-                      f"{item['ionic']}/{item['ionicMax']}",
-                      item['underConstruction'],
-                      item['sharingSensors'],
-                      item['x'],
-                      item['y'],
-                      item['travelDirection'],
-                      item['ownerName'],
-                      item['iffStatus'],
-                      item['image'],
-                      ]
-          data.append(scan_data)
-          session.commit()
+                data = add_data(data, system_name, scan_date, item, system_dict)
+          else:
+            data = add_data(data, system_name, scan_date, item, system_dict)
+        session.commit()
       df = pd.DataFrame(data, columns=['system','scan_date','last_seen','galX','galY','name','typeName','entityID','entityType','hull','shield','ionix','underConstruction','sharingSensors','sysX','sysY','travelDirection','ownerName','iffStatus','image'])
       df.to_sql(name=system_name, con=engine, if_exists='append')
       logOutput += f"### Finished processing {file} ###<br/>"
@@ -144,17 +149,15 @@ def system_report(systemName):
     newestScan = pd.read_sql(f"SELECT system, scan_date FROM 'Processed Files' WHERE system LIKE '%{systemName}%'", conn)
     newestScan = newestScan.sort_values(by=['scan_date'], ascending=False, ignore_index=True).head(1)
     try:
-      results = pd.read_sql(f"SELECT entityID, name, typeName, ownerName, last_seen FROM '{newestScan.system}'", conn)
+      results = pd.read_sql(f"SELECT entityID, name, typeName, ownerName, last_seen FROM '{newestScan.system.values[0]}' WHERE last_seen == '{newestScan.scan_date.values[0]}'", conn)
+      print(results)
       if not results.empty:
         resultsDF = pd.concat([results,resultsDF])
     except:
+      print("Exception found")
       pass
   try:    
     resultsDF = resultsDF.sort_values(by=['entityID', 'name', 'last_seen'])
   except:
     resultsDF = pd.DataFrame({f"System Data for {systemName}": [f"{systemName} Not Found in search of {tables}"]})
   return resultsDF
-
-
-
-          

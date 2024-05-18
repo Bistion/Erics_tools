@@ -9,6 +9,7 @@ class Entity(Base):
   id = Column(Integer, primary_key=True, autoincrement=True)
   entityID = Column(Integer, nullable=False) #nullable means required field
   name = Column(String(120), nullable=False)
+  ownerName = Column(String(80), nullable=False)
   last_seen = Column(String(80), nullable=False)
   typeName = Column(String(80), nullable=False)
   system = Column(String(80), nullable=False)

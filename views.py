@@ -26,6 +26,7 @@ def upload():
     for file in files:
       fn = secure_filename(file.filename)
       file.save(os.path.join('/var/data/uploads', fn))
+      # file.save(os.path.join('./uploads', fn))
     logOutput = enter_scan()
     with open ("./templates/logOutput.html", 'w') as lo:
       lo.write(logOutput)
@@ -40,7 +41,7 @@ def entity_lookup():
     entityName = request.form.get('entityName')
     results = lookup_entity(entityID,entityName)
     value = pd.DataFrame(results)
-    return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values)
+    return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values, value=f"{entityID}{entityName}")
   else:  
     return render_template("entity_lookup.html")
   
@@ -50,6 +51,6 @@ def system_report_view():
     system = request.form.get('system')
     results = system_report(system)
     value = pd.DataFrame(results)
-    return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values)
+    return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values, value=system)
   else:  
     return render_template("system_report.html")

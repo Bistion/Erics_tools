@@ -6,6 +6,10 @@ from database import *
 
 views = Blueprint(__name__, "views")
 
+def color_cells(s):
+  color = {"Entered System": "green", "Left System": "red"}
+  return ['background-color: ' + color[s["update_reason"]] for s_ in s]
+
 @views.route("/")
 def home():
   return render_template("home.html")
@@ -54,3 +58,14 @@ def system_report_view():
     return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values, value=system)
   else:  
     return render_template("system_report.html")
+  
+@views.route("/system-movement", methods=['GET','POST'])
+def system_movement_view():
+  if request.method == 'POST':
+    system = request.form.get('system')
+    results = system_movement(system)
+    value = pd.DataFrame(results)
+    # value = value.style.apply(color_cells, axis=1)
+    return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values, value=system)
+  else:  
+    return render_template("movement_report.html")

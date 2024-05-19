@@ -2,11 +2,37 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <div class="position-relative">
-  <h3 class="mt-5 text-center fw-bold">
+  <h2 class="mt-5 text-center fw-bold">
     Welcome to Eric's Tools!
-  </h3>
+  </h2>
   <p class="mt-5 text-center">
     Excuse my mess while I work on implementing more tools.  I'm sure this won't be the last format you see on the website.  Feedback is highly encouraged.
+  </p>
+</div>
+<div class="position-relative">
+  <h4 class="mt-5 text-center fw-bold">
+    Changes/Updates
+  </h4>
+  <h5 class="mt-5 text-left">
+    Date: 5/19/2024
+  </h5>
+  <p class="mt-5 text-left">
+    - Added System Movement data collection and a report based on System name (Movement Within System page).<br/>
+    - Updated Scan Entry database to handle additional fields.<br/>
+    -> This required deleting and repopulating the database with current files.<br/>
+  </p>
+  <h5 class="mt-5 text-left">
+    Date: 5/18/2024
+  </h5>
+  <p class="mt-5 text-left">
+    - Added reporting of what is currently in a system by system name (Current System Status page).<br/>
+  </p>
+  <h5 class="mt-5 text-left">
+    Date: 5/16/2024
+  </h5>
+  <p class="mt-5 text-left">
+    - Adding ability to upload system scanner files in standard Combine output (Upload Scan File page).<br/>
+    - Added the Entity Lookup options for either the entities ID or Name (Entity Lookup page).
   </p>
 </div>
 {% endblock %}

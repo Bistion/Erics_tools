@@ -207,7 +207,7 @@ def system_report(systemName):
     newestScan = pd.read_sql(f"SELECT system, scan_date FROM 'Processed Files' WHERE system LIKE '%{systemName}%'", conn)
     newestScan = newestScan.sort_values(by=['scan_date'], ascending=False, ignore_index=True).head(1)
     try:
-      results = pd.read_sql(f"SELECT entityID, name, typeName, ownerName, last_seen FROM '{newestScan.system.values[0]}' WHERE last_seen == '{newestScan.scan_date.values[0]}'", conn)
+      results = pd.read_sql(f"SELECT entityID, name, typeName, ownerName, last_seen FROM '{newestScan.system.values[0]}' WHERE last_seen LIKE '%{newestScan.scan_date.values[0]}%'", conn)
       if not results.empty:
         resultsDF = pd.concat([results,resultsDF])
     except:

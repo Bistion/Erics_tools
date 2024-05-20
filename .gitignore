@@ -7,4 +7,5 @@
 /flask
 /__pycache__
 /System_Scans.db
+/System_Movement.db
 /templates/Work_in_progress

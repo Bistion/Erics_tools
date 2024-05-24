@@ -20,7 +20,7 @@ def project_estimate(entityType,entityName,entityQty):
   with engine.connect() as conn:
     rmList = pd.read_sql(f"SELECT materials FROM '{tableName}' WHERE name == '{entityName}'", conn)
     if rmList['materials'].loc[rmList.index[0]] == "No Materials":
-      materialList = f"Unique entity with no materials listed"
+      materialList += f"Unique entity with no materials listed"
     else:
       rmList = rmList['materials'].loc[rmList.index[0]].split(",")
       for rm in rmList:

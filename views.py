@@ -2,7 +2,8 @@ from flask import Blueprint, render_template, request, redirect
 import os
 from werkzeug.utils import secure_filename
 import pandas as pd
-from database import *
+from dbSystem import *
+from dbProject import *
 
 views = Blueprint(__name__, "views")
 
@@ -69,3 +70,17 @@ def system_movement_view():
     return render_template('entity_lookup_results.html', tables=[value.to_html(classes='table-style', index=False)], titles=value.columns.values, value=system)
   else:  
     return render_template("movement_report.html")
+  
+@views.route("/estimate-project", methods=['GET','POST'])
+def project_estimate_view():
+  if request.method == 'POST':
+    entityType = request.form.get('entityType')
+    entityName = request.form.get('entityName')
+    entityQty = request.form.get('entityQty')
+    logOutput = project_estimate(entityType,entityName,entityQty)
+    with open ("./templates/logOutput.html", 'w') as lo:
+      lo.write(logOutput)
+    return render_template('upload_log.html')
+  else:
+    entityList = get_entity_list()
+    return render_template('proj_lu_entity.html', entityJson=entityList)

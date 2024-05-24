@@ -10,9 +10,12 @@ projEngine = create_engine(f"sqlite:///projects.db", echo=False)
 def entity_info(searchName):
   pass
 
-def project_estimate(entityType,entityName,entityQty):
+def project_estimate(entityType,entityClass,entityName,entityQty):
   if entityQty == "":
     entityQty = 1
+  weapons = ["Projectile","Heavy Projectile","Non-Projectile"]
+  if entityClass in weapons:
+    entityType = "item"
   tableName = f"{entityType}_info"
   tableName = tableName.lower()
   materialList = f"<h3>Materials required to build {entityQty} x {entityName}.</h3><br/>"

@@ -75,9 +75,10 @@ def system_movement_view():
 def project_estimate_view():
   if request.method == 'POST':
     entityType = request.form.get('entityType')
+    entityClass = request.form.get('entityClass')
     entityName = request.form.get('entityName')
     entityQty = request.form.get('entityQty')
-    logOutput = project_estimate(entityType,entityName,entityQty)
+    logOutput = project_estimate(entityType,entityClass,entityName,entityQty)
     with open ("./templates/logOutput.html", 'w') as lo:
       lo.write(logOutput)
     return render_template('upload_log.html')

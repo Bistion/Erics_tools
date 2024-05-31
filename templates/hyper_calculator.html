@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/data-tables.css') }}">
+{% endblock %}
+{% block title %}Entity Lookup{% endblock %}
+{% block content %}
+<section>
+  <form class="mt-3" method="POST">
+    <div>
+      <label style="padding:30px 0 0 0">Select Starting Sector:</label>
+      <select name="startSector" id="sectorStartName", onChange="setStartSystem(this.value);">
+      </select>
+    </div>
+    <div>
+      <label style="padding:30px 0 0 0">Select Starting System:</label>
+      <select name="startSystem", id="systemStartName">
+        <option value="" disabled selected></option>
+      </select>
+    </div>
+    <div>
+      <label style="padding:30px 0 0 0">Select Ending Sector:</label>
+      <select name="endSector" id="sectorEndName", onChange="setEndSystem(this.value);">
+      </select>
+    </div>
+    <div>
+      <label style="padding:30px 0 0 0">Select Ending System:</label>
+      <select name="endSystem", id="systemEndName">
+        <option value="" disabled selected></option>
+      </select>
+    </div>
+    <div>
+      <label style="padding:30px 0 0 0">Set Ship Hyperspeed:</label>
+      <select name="hyperspeed", id="hyperspeedID">
+        {% for i in range(1,11) %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label style="padding:30px 0 0 0">Set Piloting Skill:</label>
+      <select name="pilotSkill", id="pilotSkillID">
+        {% for i in range(1,6) %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div style="padding:30px 0 0 100px">
+      <input type="submit">
+      <!-- <button type="button" class="btn btn-info" onclick="calculate">Calculate</button> -->
+    </div>
+  </form>
+</section>
+<div class="container" style="padding-top:30px">
+  <div style="padding-top:10px;border-style: groove;border-color:white">
+    <center>
+      <h1 style="color:white">Showing fastest calculated routes</h1>
+      <h1 style="color:white">---------------------------------</h1>
+      <h3 style="color:white">{{path}}</h3>
+      <h5 style="color:red">{{total}}</h5>
+    </center>
+  </div>
+  <div class="data-table" style="padding-top:10px">
+    {% for table in tables %}
+    {{ table|safe }}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script 
+  src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js" integrity="sha512-+6Q7hv5pGUBXOuHWw8OdQx3ac7DzM3oJhYqz7SHDku0yl9EBdMqegoPed4GsHRoNF/VQYK2LTYewAIEBrEf/3w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script>
+  const sectorList = {{ sectorJson|tojson }}
+  const systemList = {{ systemJson|tojson }}
+  document.addEventListener("DOMContentLoaded", function(){
+    var secJson = JSON.parse(sectorList)
+    var sectorOptions = "<option></option>";
+    for (var i = 0; i < secJson.length; i++) {
+      sectorOptions += "<option>" + secJson[i].sector_name + "</option>";
+    }
+    document.getElementById("sectorStartName").innerHTML = sectorOptions;
+    document.getElementById("sectorEndName").innerHTML = sectorOptions;
+  })
+</script>
+<script 
+  src="{{ url_for('static', filename='js/proj_lu_entity.js') }}">
+</script>
+{% endblock %}

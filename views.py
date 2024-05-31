@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect
-import os
+import os, time
 from werkzeug.utils import secure_filename
 import pandas as pd
 from dbSystem import *
@@ -85,3 +85,40 @@ def project_estimate_view():
   else:
     entityList = get_entity_list()
     return render_template('proj_lu_entity.html', entityJson=entityList)
+  
+@views.route("/hyperspace", methods=['GET','POST'])
+def hyperspace_calculator():
+  if request.method == 'POST':
+    start = time.time()
+    startSector = request.form.get('startSector')
+    startSystem = request.form.get('startSystem')
+    endSector = request.form.get('endSector')
+    endSystem = request.form.get('endSystem')
+    pilotSkill = request.form.get('pilotSkill')
+    hyperspeed = request.form.get('hyperspeed')
+    
+    hyperlane = 0
+    print(f"startSector: {startSector}")
+    print(f"startSystem: {startSystem}")
+    print(f"endSector: {endSector}")
+    print(f"endSystem: {endSystem}")
+    print(f"hyperspeed: {hyperspeed}")
+    print(f"pilotSkill: {pilotSkill}")
+    results = calc_hyperjump(startSystem, endSystem, hyperspeed, pilotSkill, hyperlane)
+    value = pd.DataFrame(results)
+    value = value.drop(['index'], axis=1)
+    # properties = {"border": "2px solid gray", "color": "white", "font-size": "16px","justify": "center", "index": "False"}
+    # value = value.style.set_properties(**properties)
+    sectorList = get_sector_list()
+    systemList = get_system_list()
+    end = time.time()
+    total = end - start
+    print(f"Time to run check: {total}")
+    path = f"From {startSector}/{startSystem} to {endSector}/{endSystem} using hyper {hyperspeed} and piloting {pilotSkill}"
+    total = f"Total Time in Seconds: {total}"
+    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, tables=[value.to_html(classes="table table-dark table-hover",justify="center", index=False)], titles=value.columns.values, path=path, total=total)
+
+  else:
+    sectorList = get_sector_list()
+    systemList = get_system_list()
+    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList)

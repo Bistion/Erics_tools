@@ -33,3 +33,30 @@ var entitysByClass = {
       document.getElementById("entityName").innerHTML = entityOptions;
     }
   }
+
+  function setStartSystem(value) {
+    var systemJson = JSON.parse(systemList)
+    if (value.length == 0) document.getElementById("systemStartName").innerHTML = "<option></option>";
+    else {
+      var systemOptions = "<option></option>";
+      for (var i = 0; i < systemJson.length; i++) {
+        if (systemJson[i].sector_name == value) {
+          systemOptions += "<option>" + systemJson[i].system_name + "</option>";
+        }
+      }
+      document.getElementById("systemStartName").innerHTML = systemOptions;
+    }
+  }
+  function setEndSystem(value) {
+    var systemJson = JSON.parse(systemList)
+    if (value.length == 0) document.getElementById("systemEndName").innerHTML = "<option></option>";
+    else {
+      var systemOptions = "<option></option>";
+      for (var i = 0; i < systemJson.length; i++) {
+        if (systemJson[i].sector_name == value) {
+          systemOptions += "<option>" + systemJson[i].system_name + "</option>";
+        }
+      }
+      document.getElementById("systemEndName").innerHTML = systemOptions;
+    }
+  }

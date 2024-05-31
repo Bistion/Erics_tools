@@ -174,6 +174,8 @@ def calc_hyperjump(startSystem, endSystem, hs, piloting, hl_val):
   initialY = startResults.y_coord.loc[startResults.index[0]]
   endX = endResults.x_coord.loc[endResults.index[0]]
   endY = endResults.y_coord.loc[endResults.index[0]]
+
+  # Need to find the angle between both points and then offset +/- 90 degrees from that point with a set length
   box = [[initialX+30, initialY-30],[endX+30, endY-30],[endX-30, endY+30],[initialX-30, initialY+30]]
   print(box)
   path = f"{startSystem}"

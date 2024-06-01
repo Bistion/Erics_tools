@@ -30,10 +30,10 @@ def upload():
     files = request.files.getlist('files')
     for file in files:
       fn = secure_filename(file.filename)
-      file.save(os.path.join('/var/data/uploads', fn))
-      # file.save(os.path.join('./uploads', fn))
+      # file.save(os.path.join('/var/data/uploads', fn))
+      file.save(os.path.join('./uploads', fn))
     logOutput = enter_scan()
-    with open ("./templates/logOutput.html", 'w') as lo:
+    with open ("./templates/logOutput.html", 'w', encoding="utf-8") as lo:
       lo.write(logOutput)
     return render_template('upload_log.html')
   else:
@@ -79,7 +79,7 @@ def project_estimate_view():
     entityName = request.form.get('entityName')
     entityQty = request.form.get('entityQty')
     logOutput = project_estimate(entityType,entityClass,entityName,entityQty)
-    with open ("./templates/logOutput.html", 'w') as lo:
+    with open ("./templates/logOutput.txt", 'w', encoding="utf-8") as lo:
       lo.write(logOutput)
     return render_template('upload_log.html')
   else:

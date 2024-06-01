@@ -147,11 +147,11 @@ def enter_scan():
               if first_search:
                 session.execute(text(f"UPDATE '{system_name}' SET last_seen='{scan_date}' WHERE entityID == '{item['entityID']}' AND name == '{entityName}'"))
               else:
-                second_search = session.execute(text(f"SELECT name FROM '{system_name}' WHERE entityID == '{item['entityID']}'")).all()
-                if second_search:
-                  logOutput += f"* Entity with an ID of {item['entityID']} already entered as {second_search}, but is now reporting a different name.<br/> **> Updating name to be {item['name']}<br/>"
-                  session.execute(text(f"UPDATE '{system_name}' SET last_seen='{scan_date}', name='{item['name']}' WHERE entityID == '{item['entityID']}'"))
-                  session.execute(text(f"INSERT INTO 'Entity Changes' (entityID, name, ownerName, last_seen, typeName, system) VALUES ('{item['entityID']}', '{item['name']}', '{item['ownerName']}', '{scan_date}', '{item['typeName']}', '{system[1]}')"))
+                second_search = pd.read_sql(f"SELECT name FROM '{system_name}' WHERE entityID == '{item['entityID']}'", conn)
+                if not second_search.empty:
+                  logOutput += f"Entity with an ID of {item['entityID']} already entered as {second_search.name.values[0]}, but is now reporting a different name.<br/>Updating name to be {item['name']}<br/>"
+                  session.execute(text(f"UPDATE '{system_name}' SET last_seen='{scan_date}', name='{entityName}' WHERE entityID == '{item['entityID']}'"))
+                  session.execute(text(f"INSERT INTO 'Entity Changes' (entityID, name, ownerName, last_seen, typeName, system) VALUES ('{item['entityID']}', '{second_entName}', '{item['ownerName']}', '{scan_date}', '{item['typeName']}', '{system[1]}')"))
                   session.commit()
                 else:
                   logOutput += f"--> Ship Named: {item['name']} (ID#: {item['entityID']}, Owner: {item['ownerName']}) entered the system.<br/>"

@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 import pandas as pd
-import numpy as np
 import os, xmltodict, math, requests
 from models.base import Base
 
@@ -139,15 +138,15 @@ def project_estimate(entityType,entityClass,entityName,entityQty):
 
 def get_entity_list():
   entityDF = pd.DataFrame()
-  excludeList = ["creature_info", "entity_info", "npc_info", "weapon_info"]
+  includeList = ["droid_info", "facility_info", "item_info", "ship_info", "station_info"]
   with engine.connect() as conn:
     tables = inspect(engine).get_table_names()
     for table in tables:
-      if table in excludeList:
-        continue
-      else:
+      if table in includeList:
         results = pd.read_sql(f"SELECT name, class FROM '{table}'", conn)
         entityDF = pd.concat([results,entityDF])
+      else:
+        pass
   entityDF = entityDF.sort_values(by=['class','name'])
   entityJson = entityDF.to_json(orient='records')
   return entityJson

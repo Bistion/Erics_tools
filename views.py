@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect
-import os, time
+import os, time, json
 from werkzeug.utils import secure_filename
 import pandas as pd
 from dbSystem import *
@@ -79,7 +79,7 @@ def project_estimate_view():
     entityName = request.form.get('entityName')
     entityQty = request.form.get('entityQty')
     logOutput = project_estimate(entityType,entityClass,entityName,entityQty)
-    with open ("./templates/logOutput.txt", 'w', encoding="utf-8") as lo:
+    with open ("./templates/logOutput.html", 'w', encoding="utf-8") as lo:
       lo.write(logOutput)
     return render_template('upload_log.html')
   else:
@@ -104,9 +104,14 @@ def hyperspace_calculator():
     print(f"endSystem: {endSystem}")
     print(f"hyperspeed: {hyperspeed}")
     print(f"pilotSkill: {pilotSkill}")
-    results = calc_hyperjump(startSystem, endSystem, hyperspeed, pilotSkill, hyperlane)
+    url = 'https://h2fptpbb7b5jcuzit7dcus7zli0svjrn.lambda-url.us-east-2.on.aws/'
+    headers = {'Content-type': 'application/json'}
+    data = '{\"startSystem\":"'+startSystem+'",\"endSystem\":"'+endSystem+'",\"hs\":"'+hyperspeed+'",\"piloting\":"'+pilotSkill+'"}'
+    
+    results = requests.post(url, data=data, headers=headers)
+    print(f"Lambda results: {results}")
     value = pd.DataFrame(results)
-    value = value.drop(['index'], axis=1)
+    # value = value.drop(['index'], axis=1)
     # properties = {"border": "2px solid gray", "color": "white", "font-size": "16px","justify": "center", "index": "False"}
     # value = value.style.set_properties(**properties)
     sectorList = get_sector_list()

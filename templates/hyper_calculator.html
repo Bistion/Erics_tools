@@ -50,13 +50,21 @@
     </div>
   </form>
 </section>
-<div class="container" style="padding-top:30px">
+<div class={{ hideMe }} style="padding-top:30px">
   <div style="padding-top:10px;border-style: groove;border-color:white">
     <center>
-      <h1 style="color:white">Showing fastest calculated routes</h1>
+      <h1 style="color:white">{{ pathHead }}</h1>
+      <h5 style="color:red">{{ total }}</h5>
       <h1 style="color:white">---------------------------------</h1>
-      <h3 style="color:white">{{path}}</h3>
-      <h5 style="color:red">{{total}}</h5>
+      <h3 style="color:white">Direct route ETA using no hyperlanes</h3>
+      <h5 style="color:white">{{ direct_eta }}</h5>
+      <h1 style="color:white">---------------------------------</h1>
+      <h3 style="color:white">Fastest route: {{ path }}</h3>
+      {% for i in path_output %}
+      <h5 style="color:white">{{ i }}</h5>
+      {% endfor %}
+
+      
     </center>
   </div>
   <div class="data-table" style="padding-top:10px">

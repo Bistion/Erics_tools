@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 import pandas as pd
 from dbSystem import *
 from dbProject import *
+from hyper_calc import *
 
 views = Blueprint(__name__, "views")
 
@@ -107,23 +108,17 @@ def hyperspace_calculator():
     url = 'https://h2fptpbb7b5jcuzit7dcus7zli0svjrn.lambda-url.us-east-2.on.aws/'
     headers = {'Content-type': 'application/json'}
     data = '{\"startSystem\":"'+startSystem+'",\"endSystem\":"'+endSystem+'",\"hs\":"'+hyperspeed+'",\"piloting\":"'+pilotSkill+'"}'
-    
-    results = requests.post(url, data=data, headers=headers)
-    print(f"Lambda results: {results}")
-    value = pd.DataFrame(results)
-    # value = value.drop(['index'], axis=1)
-    # properties = {"border": "2px solid gray", "color": "white", "font-size": "16px","justify": "center", "index": "False"}
-    # value = value.style.set_properties(**properties)
+    path, direct_eta, path_output = start_pathing(startSystem, endSystem, hyperspeed, pilotSkill)
     sectorList = get_sector_list()
     systemList = get_system_list()
     end = time.time()
     total = end - start
     print(f"Time to run check: {total}")
-    path = f"From {startSector}/{startSystem} to {endSector}/{endSystem} using hyper {hyperspeed} and piloting {pilotSkill}"
-    total = f"Total Time in Seconds: {total}"
-    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, tables=[value.to_html(classes="table table-dark table-hover",justify="center", index=False)], titles=value.columns.values, path=path, total=total)
+    pathHead = f"From {startSector}/{startSystem} to {endSector}/{endSystem} using hyper {hyperspeed} and piloting {pilotSkill}"
+    total = f"Total time in seconds to calculate quickest path: {total}"
+    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, pathHead=pathHead, path=path, direct_eta=direct_eta, path_output=path_output, total=total,hideMe="container")
 
   else:
     sectorList = get_sector_list()
     systemList = get_system_list()
-    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList)
+    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, hideMe="d-none")

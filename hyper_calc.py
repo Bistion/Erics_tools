@@ -26,7 +26,6 @@ def astar_search(box, start, goal, hs, piloting):
   heapq.heappush(open_set, start_node)
   while open_set:
     current_node = heapq.heappop(open_set)
-
     if current_node.position == goal:
       # Path found, reconstruct and return it
       path = []
@@ -34,7 +33,6 @@ def astar_search(box, start, goal, hs, piloting):
         path.insert(0, current_node.position)
         current_node = current_node.parent
       return path
-
     closed_set.add(current_node.position)
     hl_coords = get_hyperlanes(current_node.position)
     for neighbor in hl_coords:
@@ -45,18 +43,14 @@ def astar_search(box, start, goal, hs, piloting):
         if sysName not in closed_set:
           curX, curY = calc_points(current_node.position)
           hl_val = float(neighbor.split(",")[3])
-          
           total = max(abs(curX - endX), abs(curY - endY))
           cost = current_node.cost + calculate_eta(total,hs,piloting,hl_val)
-          # heuristic_val = hl_val
           new_node = Node(sysName, cost)
           new_node.parent = current_node
-
           # Check if the neighbor is already in the open set with a lower cost
           existing_node = next((node for node in open_set if node.position == sysName), None)
           if existing_node and existing_node.cost <= cost:
             continue
-
           heapq.heappush(open_set, new_node)
   return None
 
@@ -143,7 +137,7 @@ def start_pathing(startSystem, endSystem, hs, piloting):
   graph2 = LineString([(initialX,initialY),(endX,endY)]).offset_curve(-30)
   start_node = startSystem
   goal_node = endSystem
-  box = Polygon([graph1.coords[0],graph1.coords[1],graph2.coords[0],graph2.coords[1]])
+  box = Polygon([graph1.coords[0],graph2.coords[0],graph2.coords[1],graph1.coords[1]])
   path = astar_search(box, start_node, goal_node, hs, piloting)
   if path:
     print("Path found:", path)
@@ -177,9 +171,9 @@ def start_pathing(startSystem, endSystem, hs, piloting):
     full_eta = display_eta(seconds)
     path_output.append(f"Total: {full_eta}")
     direct_eta = calculate_eta(full_total,hs,piloting,1)
-    print(path_output)
-    print(direct_eta)
+    print(f"Path Output: {path_output}")
     direct_eta = f"Direct Path: {display_eta(direct_eta)}"
+    print(direct_eta)
     return prettyPath, direct_eta, path_output
   else:
     path ="Hit a dead end: No path found"

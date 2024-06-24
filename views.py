@@ -99,12 +99,9 @@ def hyperspace_calculator():
     hyperspeed = request.form.get('hyperspeed')
     
     hyperlane = 0
-    print(f"startSector: {startSector}")
-    print(f"startSystem: {startSystem}")
-    print(f"endSector: {endSector}")
-    print(f"endSystem: {endSystem}")
-    print(f"hyperspeed: {hyperspeed}")
-    print(f"pilotSkill: {pilotSkill}")
+    print(f"From: {startSector}/{startSystem}")
+    print(f"To: {endSector}/{endSystem}")
+    print(f"Using: Hyperspeed: {hyperspeed} / PilotSkill: {pilotSkill}")
     url = 'https://h2fptpbb7b5jcuzit7dcus7zli0svjrn.lambda-url.us-east-2.on.aws/'
     headers = {'Content-type': 'application/json'}
     data = '{\"startSystem\":"'+startSystem+'",\"endSystem\":"'+endSystem+'",\"hs\":"'+hyperspeed+'",\"piloting\":"'+pilotSkill+'"}'

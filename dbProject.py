@@ -43,7 +43,7 @@ def project_estimate(entityType,entityClass,entityName,entityQty):
 
 def get_entity_list():
   entityDF = pd.DataFrame()
-  includeList = ["droid_info", "facility_info", "item_info", "ship_info", "station_info"]
+  includeList = ["droid_info", "facility_info", "item_info", "ship_info", "station_info","vehicle_info"]
   with engine.connect() as conn:
     tables = inspect(engine).get_table_names()
     for table in tables:

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}{{ titleVal }}{% endblock %}
 {% block content %}
-<div class="position-relative", style="padding: 100px">
+<div class={{ class1 }}>
   <h2 class="text-center fw-bold">
     Welcome to Eric's Tools!
   </h2>
@@ -9,7 +9,7 @@
     Excuse my mess while I work on implementing more tools.  I'm sure this won't be the last format you see on the website.  Feedback is highly encouraged.
   </p>
 </div>
-<div class="position-relative">
+<div class={{ class2 }}>
   <h4 class="text-center fw-bold">
     Changes/Updates
   </h4>
@@ -18,7 +18,8 @@
   </h5>
   <p class="text-left">
     - Updated SWC GPS to use proper pathing.<br/>
-    - Added total weight output to Entity Material Calculator.
+    - Added total weight output to Entity Material Calculator.<br/>
+    - Moved change log to About page
   </p> 
   <h5 class="text-left">
     Date: 5/31/2024

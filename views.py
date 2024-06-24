@@ -14,7 +14,7 @@ def color_cells(s):
 
 @views.route("/")
 def home():
-  return render_template("home.html")
+  return render_template("home.html", titleVal="Home", class1='class=position-relative, style="padding: 100px"',class2="d-none")
 
 @views.route("/new-scan")
 def new_scan():
@@ -97,14 +97,9 @@ def hyperspace_calculator():
     endSystem = request.form.get('endSystem')
     pilotSkill = request.form.get('pilotSkill')
     hyperspeed = request.form.get('hyperspeed')
-    
-    hyperlane = 0
     print(f"From: {startSector}/{startSystem}")
     print(f"To: {endSector}/{endSystem}")
     print(f"Using: Hyperspeed: {hyperspeed} / PilotSkill: {pilotSkill}")
-    url = 'https://h2fptpbb7b5jcuzit7dcus7zli0svjrn.lambda-url.us-east-2.on.aws/'
-    headers = {'Content-type': 'application/json'}
-    data = '{\"startSystem\":"'+startSystem+'",\"endSystem\":"'+endSystem+'",\"hs\":"'+hyperspeed+'",\"piloting\":"'+pilotSkill+'"}'
     path, direct_eta, path_output = start_pathing(startSystem, endSystem, hyperspeed, pilotSkill)
     sectorList = get_sector_list()
     systemList = get_system_list()
@@ -114,8 +109,11 @@ def hyperspace_calculator():
     pathHead = f"From {startSector}/{startSystem} to {endSector}/{endSystem} using hyper {hyperspeed} and piloting {pilotSkill}"
     total = f"Total time in seconds to calculate quickest path: {total}"
     return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, pathHead=pathHead, path=path, direct_eta=direct_eta, path_output=path_output, total=total,hideMe="container")
-
   else:
     sectorList = get_sector_list()
     systemList = get_system_list()
     return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, hideMe="d-none")
+  
+@views.route("/about")
+def about():
+  return render_template("home.html", titleVal="About",class1="d-none",class2="position-relative")

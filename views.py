@@ -14,7 +14,7 @@ def color_cells(s):
 
 @views.route("/")
 def home():
-  return render_template("home.html", titleVal="Home", class1='class=position-relative, style="padding: 100px"',class2="d-none")
+  return render_template("home.html", title="Home", class1='class=position-relative, style="padding: 100px"',class2="d-none")
 
 @views.route("/new-scan")
 def new_scan():
@@ -31,8 +31,8 @@ def upload():
     files = request.files.getlist('files')
     for file in files:
       fn = secure_filename(file.filename)
-      # file.save(os.path.join('/var/data/uploads', fn))
-      file.save(os.path.join('./uploads', fn))
+      file.save(os.path.join('/var/data/uploads', fn))
+      # file.save(os.path.join('./uploads', fn))
     logOutput = enter_scan()
     with open ("./templates/logOutput.html", 'w', encoding="utf-8") as lo:
       lo.write(logOutput)
@@ -116,4 +116,4 @@ def hyperspace_calculator():
   
 @views.route("/about")
 def about():
-  return render_template("home.html", titleVal="About",class1="d-none",class2="position-relative")
+  return render_template("home.html", title="About",class1="d-none",class2="position-relative")

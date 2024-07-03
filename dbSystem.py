@@ -154,7 +154,7 @@ def enter_scan():
                 if not second_search.empty:
                   logOutput += f"Entity with an ID of {item['entityID']} already entered as {second_search.name.values[0]}, but is now reporting a different name.<br/>Updating name to be {item['name']}<br/>"
                   session.execute(text(f"UPDATE '{system_name}' SET last_seen='{scan_date}', name='{entityName}' WHERE entityID == '{item['entityID']}'"))
-                  session.execute(text(f"INSERT INTO 'Entity Changes' (entityID, name, ownerName, last_seen, typeName, system) VALUES ('{item['entityID']}', '{second_entName}', '{item['ownerName']}', '{scan_date}', '{item['typeName']}', '{system[1]}')"))
+                  session.execute(text(f"INSERT INTO 'Entity Changes' (entityID, name, ownerName, last_seen, typeName, system) VALUES ('{item['entityID']}', '{second_search.name.values[0]}', '{item['ownerName']}', '{scan_date}', '{item['typeName']}', '{system[1]}')"))
                   session.commit()
                 else:
                   logOutput += f"--> Ship Named: {item['name']} (ID#: {item['entityID']}, Owner: {item['ownerName']}) entered the system.<br/>"

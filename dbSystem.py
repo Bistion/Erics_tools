@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 import pandas as pd
 import os, xmltodict
 from models.base import Base
+from datetime import datetime as dt
 
 engine = create_engine(f"sqlite:////var/data/System_Scans.db", echo=False)
 auxEngine = create_engine(f"sqlite:////var/data/System_Movement.db", echo=False)
@@ -124,7 +125,9 @@ def enter_scan():
             newestScan = newestScan.sort_values(by=['scan_date'], ascending=False, ignore_index=True).head(1)
             try:
               compareScan = newestScan['scan_date'].loc[newestScan.index[0]]
-              if scan_date > compareScan:
+              newScanDate = dt.strptime(scan_date, '%a, %d %b %Y %X')
+              oldScanDate = dt.strptime(compareScan, '%a, %d %b %Y %X')
+              if newScanDate > oldScanDate:
                 logOutput += f"Scan date of {scan_date} is newer than last processed scan date of {compareScan}.  Continuing file processing.<br/>"
               else:
                 logOutput += f"File Scan date of {scan_date} is older than the newest scan data from {compareScan}.---->Skipping.<br/>"

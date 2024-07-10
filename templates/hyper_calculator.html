@@ -462,7 +462,11 @@
   const sectorList = {{ sectorJson|tojson }}
   const systemList = {{ systemJson|tojson }}
   const pathList = {{ pathJson|tojson }}
-  var pathdisplayJson = JSON.parse(pathList);
+  if (pathList.length > 0){
+    var pathdisplayJson = JSON.parse(pathList);
+  } else {
+    var pathdisplayJson = ""
+  }
   document.addEventListener("DOMContentLoaded", function(){
     var secJson = JSON.parse(sectorList)
     var sectorOptions = "<option></option>";
@@ -471,23 +475,25 @@
     }
     document.getElementById("sectorStartName").innerHTML = sectorOptions;
     document.getElementById("sectorEndName").innerHTML = sectorOptions;
-    var pathElement = "";
-    for (var i = 0; i < pathdisplayJson.length; i++) {
-      let x = Math.max(-500, Math.min(500, pathdisplayJson[i].x_coord));
-      let y = Math.max(-500, Math.min(500, pathdisplayJson[i].y_coord));
-      let newX = 500 + x;
-      let newY = 500 - y;
-      let sysID = pathdisplayJson[i].system_uid.replace("9:","")
-      let sysHref = "https://www.swcombine.com/rules/?Galaxy_Map&systemID=" + sysID
-      pathElement = pathElement += '<a class="combatplanet" style="position:absolute;z-index:2;top:' + newY + 'px; left:' + newX + 'px" title="Sector: ' + pathdisplayJson[i].sector_name + '<br>System: '+ pathdisplayJson[i].system_name + ' (' + y + ', ' + x + ')" href="' + sysHref + '" target="_blank"></a>';
+    if (pathdisplayJson.length > 0) {
+      var pathElement = "";
+      for (var i = 0; i < pathdisplayJson.length; i++) {
+        let x = Math.max(-500, Math.min(500, pathdisplayJson[i].x_coord));
+        let y = Math.max(-500, Math.min(500, pathdisplayJson[i].y_coord));
+        let newX = 500 + x;
+        let newY = 500 - y;
+        let sysID = pathdisplayJson[i].system_uid.replace("9:","")
+        let sysHref = "https://www.swcombine.com/rules/?Galaxy_Map&systemID=" + sysID
+        pathElement = pathElement += '<a class="combatplanet" style="position:absolute;z-index:2;top:' + newY + 'px; left:' + newX + 'px" title="Sector: ' + pathdisplayJson[i].sector_name + '<br>System: '+ pathdisplayJson[i].system_name + ' (' + y + ', ' + x + ')" href="' + sysHref + '" target="_blank"></a>';
+      }
+      document.getElementById("mapVals").innerHTML = pathElement;
+      draw(pathdisplayJson)
     }
-    document.getElementById("mapVals").innerHTML = pathElement;
-
-    draw(pathdisplayJson)
-    
   })
   document.addEventListener("resize", function(){
-    draw(pathdisplayJson)
+    if (pathdisplayJson.length >0) {
+      draw(pathdisplayJson)
+    }
   })
 </script>
 <script 

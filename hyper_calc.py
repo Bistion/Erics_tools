@@ -181,3 +181,13 @@ def start_pathing(startSystem, endSystem, hs, piloting):
     direct_eta = f"Direct Path: {display_eta(direct_eta)}"
     path_output = ""
     return path, direct_eta, path_output
+  
+def get_display_points(path):
+  systems = path.split(" -> ")
+  pathDF = pd.DataFrame()
+  for system in systems:
+    with engine.connect() as conn:
+      results = pd.read_sql(f"SELECT * FROM 'system_info' WHERE system_name == '{system}'", conn)
+      pathDF = pd.concat([pathDF,results])
+    path_display_json = pathDF.to_json(orient='records')
+  return path_display_json

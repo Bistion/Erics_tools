@@ -108,11 +108,12 @@ def hyperspace_calculator():
     print(f"Time to run check: {total}")
     pathHead = f"From {startSector}/{startSystem} to {endSector}/{endSystem} using hyper {hyperspeed} and piloting {pilotSkill}"
     total = f"Total time in seconds to calculate quickest path: {total}"
-    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, pathHead=pathHead, path=path, direct_eta=direct_eta, path_output=path_output, total=total,hideMe="container")
+    path_display = get_display_points(path)
+    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, pathHead=pathHead, path=path, direct_eta=direct_eta, path_output=path_output, total=total,hideMe="container",pathJson=path_display)
   else:
     sectorList = get_sector_list()
     systemList = get_system_list()
-    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, hideMe="d-none")
+    return render_template('hyper_calculator.html', sectorJson=sectorList, systemJson=systemList, hideMe="d-none", pathJson="")
   
 @views.route("/about")
 def about():

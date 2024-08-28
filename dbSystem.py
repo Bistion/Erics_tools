@@ -92,6 +92,7 @@ def enter_scan():
   for root, dirs, files in os.walk(f"/var/data/uploads"):
     for file in files:
       with open(f"/var/data/uploads/{file}", 'r') as f:
+        print(f.read())
         system_dict = xmltodict.parse(f.read())
         system = system_dict['rss']['channel']['title'].split('Scan of ')
         system_name = system[1]

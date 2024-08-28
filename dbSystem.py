@@ -91,7 +91,7 @@ def enter_scan():
   logOutput = ""
   for root, dirs, files in os.walk(f"/var/data/uploads"):
     for file in files:
-      with open(f"/var/data/uploads/{file}", 'r', encoding='ISO-8859-1') as f:
+      with open(f"/var/data/uploads/{file}", 'r') as f:
         system_dict = xmltodict.parse(f.read())
         system = system_dict['rss']['channel']['title'].split('Scan of ')
         system_name = system[1]

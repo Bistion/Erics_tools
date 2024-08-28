@@ -29,8 +29,11 @@ def upload():
     except:
       pass
     files = request.files.getlist('files')
+    print(f'Files: {files}')
     for file in files:
+      print(f'File Raw Name: {file}')
       fn = secure_filename(file.filename)
+      print(f'File Fixed Name: {fn}')
       file.save(os.path.join('/var/data/uploads', fn))
       # file.save(os.path.join('./uploads', fn))
     logOutput = enter_scan()
